@@ -1,12 +1,12 @@
 import cv2
 
 sr = cv2.dnn_superres.DnnSuperResImpl_create()
-sr.readModel("EDSR_x4.pb")   # 미리 학습된 딥러닝 모델 파일 경로
+sr.readModel("./EDSR_x4.pb")   # 미리 학습된 딥러닝 모델 파일 경로
 sr.setModel("edsr", 4)  
 # 모델 유형과 업스케일 비율 설정 esdr은 2배, 3배, 4배의 초해상도 업스케일링 가능
 
 # 이미지 읽기
-img = cv2.imread('1.jpg')
+img = cv2.imread('./1.jpg')
 
 #이미지를 읽지 못했을때 출력
 if img is None:
@@ -17,7 +17,7 @@ if img is None:
 result = sr.upsample(img)
 
 # 결과 이미지 저장
-save_img = 'sr_img.jpg'
+save_img = './sr_img.jpg'
 cv2.imwrite(save_img, result)
 
 print(f"화질이 개선된 이미지가 {save_img}에 저장되었습니다.")
